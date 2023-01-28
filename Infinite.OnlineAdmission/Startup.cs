@@ -33,6 +33,7 @@ namespace Infinite.OnlineAdmission
             services.AddDbContext<ApplicationDbContext>(p => p.UseSqlServer(Configuration.GetConnectionString("CourseConnection")));
             services.AddScoped<IRepository<Course>, CourseRepository>();
             services.AddScoped<IStatusRepository, CourseRepository>();
+            services.AddScoped<IPaymentRepository, CourseRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

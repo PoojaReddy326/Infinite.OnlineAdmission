@@ -20,5 +20,11 @@ namespace Infinite.OnlineAdmission.Repository
             Task<ApplicationStatus> Update(int id, ApplicationStatus obj);
        
         }
+
+        public interface IPaymentRepository
+        {
+            IEnumerable<Payment> DisplayCourses();
+
+        }
     }
 }

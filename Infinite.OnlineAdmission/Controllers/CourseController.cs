@@ -13,17 +13,24 @@ namespace Infinite.OnlineAdmission.Controllers
     {
         private readonly IRepository<Course> _repository;
         public readonly IStatusRepository _statusRepository;
+        public readonly IPaymentRepository _paymentRepository;
 
-        public CourseController(IRepository<Course> repository, IStatusRepository statusRepository)
+        public CourseController(IRepository<Course> repository, IStatusRepository statusRepository, IPaymentRepository paymentRepository)
         {
             _repository = repository;
             _statusRepository = statusRepository;
+            _paymentRepository = paymentRepository;
         }
         [HttpGet]
         [Route("DisplayCourses")]
         public IEnumerable<Course> GetCourses()
         {
             return _repository.DisplayCourses();
+        }
+        [HttpGet]
+        public IEnumerable<Payment> GetPayments()
+        {
+            return _paymentRepository.DisplayCourses();
         }
 
         [HttpPut("UpdateCourse/{id}")]
@@ -77,6 +84,6 @@ namespace Infinite.OnlineAdmission.Controllers
                 return NoContent();
             }
             return NotFound("Error");            
-        }
+        }        
     }
 }
