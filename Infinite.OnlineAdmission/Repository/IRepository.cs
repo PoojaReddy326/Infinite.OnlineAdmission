@@ -18,6 +18,7 @@ namespace Infinite.OnlineAdmission.Repository
         public interface IStatusRepository
         {
             Task<ApplicationStatus> Update(int id, ApplicationStatus obj);
+       
         }
     }
 }
