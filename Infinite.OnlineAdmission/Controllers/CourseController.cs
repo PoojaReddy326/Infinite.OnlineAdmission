@@ -71,7 +71,7 @@ namespace Infinite.OnlineAdmission.Controllers
             {
                 return BadRequest();
             }
-            var result = await _repository.Update(id, status);
+            var result = await _statusRepository.Update(id, status);
             if (result != null)
             {
                 return NoContent();
