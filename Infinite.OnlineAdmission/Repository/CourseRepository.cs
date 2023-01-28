@@ -10,7 +10,7 @@ using static Infinite.OnlineAdmission.Repository.IRepository;
 
 namespace Infinite.OnlineAdmission.Repository
 {
-    public class CourseRepository : IRepository<Course>
+    public class CourseRepository : IRepository<Course>, IStatusRepository
     {
         private readonly ApplicationDbContext _Context;
 
@@ -59,6 +59,18 @@ namespace Infinite.OnlineAdmission.Repository
             }
             return null;
         }
-       
+
+        public async Task<ApplicationStatus> Update(int id, ApplicationStatus obj)
+        {
+            var StatusInDb = await _Context.Status.FindAsync(id);
+            if (StatusInDb != null)
+            {
+                StatusInDb.Status = obj.Status;
+                _Context.Status.Update(StatusInDb);
+                await _Context.SaveChangesAsync();
+                return StatusInDb;
+            }
+            return null;
+        }       
     }
 }
