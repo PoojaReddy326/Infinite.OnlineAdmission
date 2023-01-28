@@ -23,7 +23,9 @@ namespace Infinite.OnlineAdmission.Repository
 
         public interface IPaymentRepository
         {
-            IEnumerable<Payment> DisplayCourses();
+            IEnumerable<Payment> DisplayPayments();
+
+            Task<Payment> GetById(int id);
 
         }
     }

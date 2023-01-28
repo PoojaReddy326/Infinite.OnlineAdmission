@@ -12,13 +12,11 @@ namespace Infinite.OnlineAdmission.Controllers
     public class CourseController : ControllerBase
     {
         private readonly IRepository<Course> _repository;
-        public readonly IStatusRepository _statusRepository;
         public readonly IPaymentRepository _paymentRepository;
 
-        public CourseController(IRepository<Course> repository, IStatusRepository statusRepository, IPaymentRepository paymentRepository)
+        public CourseController(IRepository<Course> repository, IPaymentRepository paymentRepository)
         {
-            _repository = repository;
-            _statusRepository = statusRepository;
+            _repository = repository;            
             _paymentRepository = paymentRepository;
         }
         [HttpGet]
@@ -27,14 +25,9 @@ namespace Infinite.OnlineAdmission.Controllers
         {
             return _repository.DisplayCourses();
         }
-        [HttpGet]
-        public IEnumerable<Payment> GetPayments()
-        {
-            return _paymentRepository.DisplayCourses();
-        }
 
         [HttpPut("UpdateCourse/{id}")]
-        public async Task<ActionResult> Updtae(int id, [FromBody] Course course)
+        public async Task<ActionResult> Update(int id, [FromBody] Course course)
         {
             if (!ModelState.IsValid)
             {
@@ -70,20 +63,5 @@ namespace Infinite.OnlineAdmission.Controllers
             await _repository.Create(course);
             return CreatedAtRoute("GetCourseById", new { id = course.CourseId });
         }
-
-        [HttpPut("UpdateStatus/{id}")]
-        public async Task<IActionResult> UpdateStatus(int id, [FromBody] ApplicationStatus status)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            var result = await _statusRepository.Update(id, status);
-            if (result != null)
-            {
-                return NoContent();
-            }
-            return NotFound("Error");            
-        }        
     }
 }
