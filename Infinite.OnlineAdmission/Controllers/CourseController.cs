@@ -67,7 +67,7 @@ namespace Infinite.OnlineAdmission.Controllers
         [HttpPut("UpdateStatus/{id}")]
         public async Task<IActionResult> UpdateStatus(int id, [FromBody] ApplicationStatus status)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
