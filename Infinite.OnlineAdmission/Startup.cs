@@ -1,5 +1,6 @@
 using Infinite.OnlineAdmission.Models;
 using Infinite.OnlineAdmission.Repository;
+using Infinite.Users.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,7 +33,8 @@ namespace Infinite.OnlineAdmission
         {
             services.AddDbContext<ApplicationDbContext>(p => p.UseSqlServer(Configuration.GetConnectionString("CourseConnection")));
             services.AddScoped<IRepository<Course>, CourseRepository>();
-            
+            services.AddScoped<IFormRepository, AdmissionFormRepository>();
+
             services.AddScoped<IStatusRepository, StatusRepository>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();
 

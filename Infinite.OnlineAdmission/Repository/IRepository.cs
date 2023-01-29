@@ -33,5 +33,14 @@ namespace Infinite.OnlineAdmission.Repository
             Task<Payment> GetById(int id);
 
         }
+
+        public interface IFormRepository
+        {
+            IEnumerable<AdmissionForm> GetAll();
+            Task<AdmissionForm> GetById(int Id);
+            Task<AdmissionForm> Create(AdmissionForm obj);
+            Task<AdmissionForm> Update(int Id, AdmissionForm obj);
+            Task<AdmissionForm> Delete(int Id);
+        }
     }
 }

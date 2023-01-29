@@ -2,7 +2,7 @@
 
 namespace Infinite.OnlineAdmission.Migrations
 {
-    public partial class Admission : Migration
+    public partial class INitialModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,7 +25,8 @@ namespace Infinite.OnlineAdmission.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ReferanceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Amount = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
