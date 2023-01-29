@@ -1,6 +1,7 @@
 ﻿using Infinite.OnlineAdmission.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Infinite.OnlineAdmission.Repository
@@ -18,6 +19,10 @@ namespace Infinite.OnlineAdmission.Repository
         public interface IStatusRepository
         {
             Task<ApplicationStatus> Update(int id, ApplicationStatus obj);
+
+            Task<ApplicationStatus> GetByStatus(string status);
+
+            IEnumerable<ApplicationStatus> GetAll();
        
         }
 

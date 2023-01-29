@@ -2,6 +2,8 @@
 using Infinite.OnlineAdmission.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using static Infinite.OnlineAdmission.Repository.IRepository;
 
@@ -32,6 +34,25 @@ namespace Infinite.OnlineAdmission.Controllers
                 return NoContent();
             }
             return NotFound("Error");
+        }
+
+        [HttpGet]
+        [Route("GetByStatus/{status}")]
+        public async Task<IActionResult> GetByStatus(string Status)
+        {
+            var statuses = await _statusRepository.GetByStatus(Status);
+            if (statuses != null)
+            {
+                return Ok(statuses);
+            }
+            return NotFound();      
+        }
+
+        [HttpGet]
+        [Route("DisplayStatus")]
+        public IEnumerable<ApplicationStatus> GetAll()
+        {
+            return _statusRepository.GetAll();
         }
     }
 }
