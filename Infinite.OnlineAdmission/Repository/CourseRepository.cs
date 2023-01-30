@@ -59,5 +59,15 @@ namespace Infinite.OnlineAdmission.Repository
             }
             return null;
         }
+        [HttpGet]
+        public async Task<Course> GetById(int Id)
+        {
+            var course= await _Context.Courses.FindAsync(Id);
+            if (course != null)
+            {
+                return course;
+            }
+            return null;
+        }
     }
 }

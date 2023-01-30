@@ -1,6 +1,7 @@
 ﻿using Infinite.OnlineAdmission.Models;
 using Infinite.OnlineAdmission.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using static Infinite.OnlineAdmission.Repository.IRepository;
@@ -26,6 +27,7 @@ namespace Infinite.OnlineAdmission.Controllers
         {
             return _repository.DisplayCourses();
         }
+        
 
         [HttpPut("UpdateCourse/{id}")]
         public async Task<ActionResult> Update(int id, [FromBody] Course course)
@@ -43,7 +45,6 @@ namespace Infinite.OnlineAdmission.Controllers
         }
 
         [HttpDelete("DeleteCourse/{id}")]
-
         public async Task<ActionResult> DeleteCourse(int id)
         {
             var result = await _repository.Delete(id);
@@ -62,7 +63,19 @@ namespace Infinite.OnlineAdmission.Controllers
                 return BadRequest();
             }
             await _repository.Create(course);
-            return CreatedAtRoute("GetCourseById", new { id = course.CourseId });
+            //return CreatedAtRoute("GetCourseById", new { id = course.CourseId });
+            return Ok("Success");
+        }
+        [HttpGet]
+        [Route("GetCourseById/{Id}")]
+        public async Task<ActionResult> GetById(int Id)
+        {
+            var course= await _repository.GetById(Id);
+            if (course != null)
+            {
+                return Ok(course);
+            }
+            return NotFound();
         }
     }
 }

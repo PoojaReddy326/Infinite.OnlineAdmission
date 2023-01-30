@@ -14,6 +14,7 @@ namespace Infinite.OnlineAdmission.Repository
             Task<Course> Update(int CourseId, T obj);
             Task<Course> Delete(int CourseId);
             Task Create(T obj);
+            Task<Course> GetById(int Id);
         }
 
         public interface IStatusRepository

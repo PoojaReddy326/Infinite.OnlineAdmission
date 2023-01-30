@@ -19,7 +19,7 @@ namespace Infinite.OnlineAdmission.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Infinite.OnlineAdmission.Models.AdmissionForm", b =>
+            modelBuilder.Entity("Infinite.OnlineAdmission.Models.ApplicationForm", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
