@@ -19,6 +19,7 @@ namespace Infinite.OnlineAdmission.Controllers
             _repository = repository;            
             _paymentRepository = paymentRepository;
         }
+
         [HttpGet]
         [Route("DisplayCourses")]
         public IEnumerable<Course> GetCourses()

@@ -11,11 +11,11 @@ namespace Infinite.OnlineAdmission.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StatusController : ControllerBase
+    public class ApplicationStatusController : ControllerBase
     {
         private readonly IStatusRepository _statusRepository;
 
-        public StatusController(IStatusRepository statusRepository)
+        public ApplicationStatusController(IStatusRepository statusRepository)
         {
             _statusRepository = statusRepository;
         }

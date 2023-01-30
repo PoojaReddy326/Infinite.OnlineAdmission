@@ -34,8 +34,8 @@ namespace Infinite.OnlineAdmission
             services.AddDbContext<ApplicationDbContext>(p => p.UseSqlServer(Configuration.GetConnectionString("CourseConnection")));
             services.AddScoped<IRepository<Course>, CourseRepository>();
             services.AddScoped<IFormRepository, AdmissionFormRepository>();
-
-            services.AddScoped<IStatusRepository, StatusRepository>();
+            services.AddScoped<IImageRepository, DocumentRepository>();
+            services.AddScoped<IStatusRepository, ApplicationStatusRepository>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();
 
 

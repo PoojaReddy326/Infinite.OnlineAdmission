@@ -41,7 +41,7 @@ namespace Infinite.OnlineAdmission.Repository
         }
 
         [HttpGet]
-        [Route("Get All Courses")]
+        [Route("GetAllCourses")]
         public IEnumerable<Course> DisplayCourses()
         {
             return _Context.Courses.ToList();

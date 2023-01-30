@@ -10,18 +10,18 @@ namespace Infinite.OnlineAdmission.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdmissionsController : ControllerBase
+    public class ApplicationFormsController : ControllerBase
     {
         private readonly IFormRepository _formRepository;
 
-        public AdmissionsController(IFormRepository formRepository)
+        public ApplicationFormsController(IFormRepository formRepository)
         {
             _formRepository = formRepository;
         }
 
         [HttpGet]
         [Route("GetAllForms")]
-        public IEnumerable<AdmissionForm> GetForms()
+        public IEnumerable<ApplicationForm> GetForms()
         {
             return _formRepository.GetAll();
         }
@@ -39,7 +39,7 @@ namespace Infinite.OnlineAdmission.Controllers
         }
 
         [HttpPost("CreateForm")]
-        public async Task<ActionResult> CreateForm([FromBody] AdmissionForm form)
+        public async Task<ActionResult> CreateForm([FromBody] ApplicationForm form)
         {
             if (!ModelState.IsValid)
             {
@@ -50,7 +50,7 @@ namespace Infinite.OnlineAdmission.Controllers
         }
 
         [HttpPut("UpdateForm/{Id}")]
-        public async Task<IActionResult> UpdateForm(int Id, [FromBody] AdmissionForm form)
+        public async Task<IActionResult> UpdateForm(int Id, [FromBody] ApplicationForm form)
         {
             if (!ModelState.IsValid)
             {

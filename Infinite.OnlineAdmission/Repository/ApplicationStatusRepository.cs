@@ -8,10 +8,10 @@ using static Infinite.OnlineAdmission.Repository.IRepository;
 
 namespace Infinite.OnlineAdmission.Repository
 {
-    public class StatusRepository : IStatusRepository        
+    public class ApplicationStatusRepository : IStatusRepository        
     {
         private readonly ApplicationDbContext _Context ;
-        public StatusRepository(ApplicationDbContext context)
+        public ApplicationStatusRepository(ApplicationDbContext context)
         {
             _Context = context;
         }

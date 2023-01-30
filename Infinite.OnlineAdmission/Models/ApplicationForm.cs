@@ -2,7 +2,7 @@
 
 namespace Infinite.OnlineAdmission.Models
 {
-    public class AdmissionForm
+    public class ApplicationForm
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

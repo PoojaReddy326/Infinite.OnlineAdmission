@@ -17,7 +17,7 @@ namespace Infinite.Users.Repositories
         }       
 
         [HttpPost]
-        public async Task<AdmissionForm> Delete(int Id)
+        public async Task<ApplicationForm> Delete(int Id)
         {
             var FormInDb = await _context.forms.FindAsync(Id);
             if (FormInDb != null)
@@ -29,12 +29,12 @@ namespace Infinite.Users.Repositories
             return null;
         }
 
-        public IEnumerable<AdmissionForm> GetAll()
+        public IEnumerable<ApplicationForm> GetAll()
         {
             return _context.forms.ToList();
         }
 
-        public async Task<AdmissionForm> GetById(int Id)
+        public async Task<ApplicationForm> GetById(int Id)
         {
             var form = await _context.forms.FindAsync(Id);
             if (form != null)
@@ -45,7 +45,7 @@ namespace Infinite.Users.Repositories
             return null;
         }        
 
-        public async Task<AdmissionForm> Update(int Id, AdmissionForm obj)
+        public async Task<ApplicationForm> Update(int Id, ApplicationForm obj)
         {
 
             var FormInDb = await _context.forms.FindAsync(Id);
@@ -69,7 +69,7 @@ namespace Infinite.Users.Repositories
             return null;
         }
 
-        public async Task<AdmissionForm> Create(AdmissionForm obj)
+        public async Task<ApplicationForm> Create(ApplicationForm obj)
         {
             if (obj != null)
             {

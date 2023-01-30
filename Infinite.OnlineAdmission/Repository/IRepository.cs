@@ -36,11 +36,18 @@ namespace Infinite.OnlineAdmission.Repository
 
         public interface IFormRepository
         {
-            IEnumerable<AdmissionForm> GetAll();
-            Task<AdmissionForm> GetById(int Id);
-            Task<AdmissionForm> Create(AdmissionForm obj);
-            Task<AdmissionForm> Update(int Id, AdmissionForm obj);
-            Task<AdmissionForm> Delete(int Id);
+            IEnumerable<ApplicationForm> GetAll();
+            Task<ApplicationForm> GetById(int Id);
+            Task<ApplicationForm> Create(ApplicationForm obj);
+            Task<ApplicationForm> Update(int Id, ApplicationForm obj);
+            Task<ApplicationForm> Delete(int Id);
+        }
+        public interface IImageRepository
+        {
+            Task<int> Add(FileUpload image);
+            Task<FileUpload> Get(int id);
+            IEnumerable<FileUpload> GetAll();
+            Task<FileUpload> Delete(int id);
         }
     }
 }
