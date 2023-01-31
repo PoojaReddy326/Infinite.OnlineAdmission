@@ -50,5 +50,10 @@ namespace Infinite.OnlineAdmission.Repository
             IEnumerable<FileUpload> GetAll();
             Task<FileUpload> Delete(int id);
         }
+         public interface IAdminRepository
+    {
+        IEnumerable<RegUser> GetAll();
+        Task<RegUser> Update(int id, RegUser obj);
+    }
     }
 }
