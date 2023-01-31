@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infinite.OnlineAdmission.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230130060956_course")]
-    partial class course
+    [Migration("20230131045457_OnlineAdmission")]
+    partial class OnlineAdmission
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

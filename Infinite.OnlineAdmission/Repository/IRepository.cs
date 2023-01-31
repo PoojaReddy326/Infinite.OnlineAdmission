@@ -21,7 +21,7 @@ namespace Infinite.OnlineAdmission.Repository
         {
             Task<ApplicationStatus> Update(int id, ApplicationStatus obj);
 
-            Task<ApplicationStatus> GetByStatus(string status);
+            //Task<ApplicationStatus> GetByStatus(string status);
 
             IEnumerable<ApplicationStatus> GetAll();
        

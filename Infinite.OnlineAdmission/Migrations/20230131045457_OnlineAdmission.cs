@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infinite.OnlineAdmission.Migrations
 {
-    public partial class course : Migration
+    public partial class OnlineAdmission : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

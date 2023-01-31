@@ -36,17 +36,17 @@ namespace Infinite.OnlineAdmission.Controllers
             return NotFound("Error");
         }
 
-        [HttpGet]
-        [Route("GetByStatus/{status}")]
-        public async Task<IActionResult> GetByStatus(string Status)
-        {
-            var statuses = await _statusRepository.GetByStatus(Status);
-            if (statuses != null)
-            {
-                return Ok(statuses);
-            }
-            return NotFound();      
-        }
+        //[HttpGet]
+        //[Route("GetByStatus/{status}")]
+        //public async Task<IActionResult> GetByStatus(string Status)
+        //{
+        //    var result = await _statusRepository.GetByStatus(Status);
+        //    if (result != null)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return NotFound();      
+        //}
 
         [HttpGet]
         [Route("DisplayStatus")]
