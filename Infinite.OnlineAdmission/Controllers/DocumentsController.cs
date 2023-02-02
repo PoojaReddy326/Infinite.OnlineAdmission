@@ -12,52 +12,41 @@ namespace Infinite.OnlineAdmission.Controllers
     [ApiController]
     public class DocumentsController : ControllerBase
     {
-        private readonly IImageRepository _imageRepository;
-        public DocumentsController(IImageRepository imageRepository)
+        private readonly IDocumentsRepository<Documents> _repository;
+        private readonly IDocumentsGetRepository<Documents> _getrepository;
+        public DocumentsController(IDocumentsRepository<Documents> repository, IDocumentsGetRepository<Documents> getrepository)
         {
-            _imageRepository = imageRepository;
+            _getrepository = getrepository;
+            _repository = repository;
         }
-        [HttpGet("GetAllImages")]
-        public IEnumerable<FileUpload> GetImages()
+        //[Authorize(Roles = "Admin,Student")]
+        [HttpGet("GetAllUploadImages")]
+        public async Task<IEnumerable<Documents>> GetAllImages()
         {
-            return _imageRepository.GetAll();
+            return await _getrepository.GetAll();
         }
-        [HttpGet("GetImagesById")]
-        public async Task<ActionResult> Get(int id)
+        //[Authorize(Roles = "Admin,Student")]
+        [HttpGet]
+        [Route("GetImageById/{id}")]
+        public async Task<IActionResult> GetImageById(int id)
         {
-            var image = await _imageRepository.Get(id);
+            var image = await _getrepository.GetById(id);
             if (image != null)
             {
                 return Ok(image);
             }
             return NotFound();
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Upload(IFormFile file)
+        //[Authorize(Roles = "Student")]
+        [HttpPost("CreateImage")]
+        public async Task<IActionResult> Create([FromBody] Documents image)
         {
-            //Read the file into a byte array
-            byte[] fileData;
-            using (var stream = new MemoryStream())
+            if (ModelState.IsValid)
             {
-                await file.CopyToAsync(stream);
-                fileData = stream.ToArray();
+                await _repository.Create(image);
+                return CreatedAtAction("GetImageById", new { id = image.Id }, image);
             }
-            //Create the image object
-            var image = new FileUpload { FileName = file.FileName, FileData = fileData };
-            //Save the image to the database
-            var id = await _imageRepository.Add(image);
-            return Ok("Success");
-        }
-        [HttpDelete("DeleteImage/{id}")]
-        public async Task<ActionResult> DeleteImage(int id)
-        {
-            var result = await _imageRepository.Delete(id);
-            if (result != null)
-            {
-                return Ok();
-            }
-            return NotFound("Image Doesnot Exists");
+            return BadRequest();
         }
     }
 }

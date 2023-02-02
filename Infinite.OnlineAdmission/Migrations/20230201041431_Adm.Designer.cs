@@ -4,14 +4,16 @@ using Infinite.OnlineAdmission.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infinite.OnlineAdmission.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230201041431_Adm")]
+    partial class Adm
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,22 +125,22 @@ namespace Infinite.OnlineAdmission.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("Infinite.OnlineAdmission.Models.Documents", b =>
+            modelBuilder.Entity("Infinite.OnlineAdmission.Models.FileUpload", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ImageName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("FileData")
+                        .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("FileName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Uploads");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Infinite.OnlineAdmission.Models.Payment", b =>

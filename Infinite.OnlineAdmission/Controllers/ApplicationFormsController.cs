@@ -2,9 +2,12 @@
 using Infinite.OnlineAdmission.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using static Infinite.OnlineAdmission.Repository.IRepository;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Infinite.OnlineAdmission.Controllers
 {
@@ -13,7 +16,6 @@ namespace Infinite.OnlineAdmission.Controllers
     public class ApplicationFormsController : ControllerBase
     {
         private readonly IFormRepository _formRepository;
-
         public ApplicationFormsController(IFormRepository formRepository)
         {
             _formRepository = formRepository;
@@ -73,6 +75,27 @@ namespace Infinite.OnlineAdmission.Controllers
                 return Ok();
             }
             return NotFound("Adimission Form Not Exists");
+        }
+        [HttpGet("GetByPhoneNumber/{phonenumber}")]
+        public async Task<IActionResult> GetByPhoneNumber(string phonenumber)
+        {
+            var result = await _formRepository.SearchByphn(phonenumber);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound("Please Provide valid Employee");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetByEmail(string email)
+        {
+            var result = await _formRepository.SearchByemail(email);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return NotFound("Please Provide valid Employee");
         }
     }
 }

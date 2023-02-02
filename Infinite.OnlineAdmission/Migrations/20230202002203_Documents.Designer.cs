@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infinite.OnlineAdmission.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230131045457_OnlineAdmission")]
-    partial class OnlineAdmission
+    [Migration("20230202002203_Documents")]
+    partial class Documents
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,29 @@ namespace Infinite.OnlineAdmission.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Infinite.OnlineAdmission.Models.Admin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("admins");
+                });
 
             modelBuilder.Entity("Infinite.OnlineAdmission.Models.ApplicationForm", b =>
                 {
@@ -102,22 +125,22 @@ namespace Infinite.OnlineAdmission.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("Infinite.OnlineAdmission.Models.FileUpload", b =>
+            modelBuilder.Entity("Infinite.OnlineAdmission.Models.Documents", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<byte[]>("FileData")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FileName")
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Images");
+                    b.ToTable("Uploads");
                 });
 
             modelBuilder.Entity("Infinite.OnlineAdmission.Models.Payment", b =>
@@ -136,6 +159,36 @@ namespace Infinite.OnlineAdmission.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Payment");
+                });
+
+            modelBuilder.Entity("Infinite.OnlineAdmission.Models.RegUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ConfirmPwd")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DOB")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Regdusers");
                 });
 #pragma warning restore 612, 618
         }

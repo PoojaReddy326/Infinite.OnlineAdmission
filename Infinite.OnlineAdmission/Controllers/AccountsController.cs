@@ -1,4 +1,5 @@
 ﻿using Infinite.OnlineAdmission.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -13,11 +14,11 @@ namespace Infinite.OnlineAdmission.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminController : ControllerBase
+    public class AccountsController : ControllerBase
     {
         private readonly IConfiguration _configuration;
         private readonly ApplicationDbContext _dbContext;
-        public AdminController(IConfiguration configuration, ApplicationDbContext dbContext)
+        public AccountsController(IConfiguration configuration, ApplicationDbContext dbContext)
         {
             _configuration = configuration;
             _dbContext = dbContext;
@@ -59,6 +60,12 @@ namespace Infinite.OnlineAdmission.Controllers
             obj.WriteToken(token);
             return new JwtSecurityTokenHandler().WriteToken(token);
 
+        }
+        [HttpGet("GetName"), Authorize]
+        public IActionResult GetName()
+        {
+            var UserName = User.FindFirstValue(ClaimTypes.Name);
+            return Ok(UserName);
         }
     }
 }

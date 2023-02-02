@@ -42,18 +42,30 @@ namespace Infinite.OnlineAdmission.Repository
             Task<ApplicationForm> Create(ApplicationForm obj);
             Task<ApplicationForm> Update(int Id, ApplicationForm obj);
             Task<ApplicationForm> Delete(int Id);
+            Task<IEnumerable<ApplicationForm>> SearchByphn(string phonenumber);
+            Task<IEnumerable<ApplicationForm>> SearchByemail(string email);
+            //Task<IEnumerable<AdmissionFormDto>> SearchByStatus(string status);
         }
-        public interface IImageRepository
-        {
-            Task<int> Add(FileUpload image);
-            Task<FileUpload> Get(int id);
-            IEnumerable<FileUpload> GetAll();
-            Task<FileUpload> Delete(int id);
-        }
+        //public interface IImageRepository
+        //{
+        //    Task<int> Add(FileUpload image);
+        //    Task<FileUpload> Get(int id);
+        //    IEnumerable<FileUpload> GetAll();
+        //    Task<FileUpload> Delete(int id);
+        //}
          public interface IAdminRepository
-    {
-        IEnumerable<RegUser> GetAll();
-        Task<RegUser> Update(int id, RegUser obj);
-    }
+         {
+         IEnumerable<RegUser> GetAll();
+         Task<RegUser> Update(int id, RegUser obj);
+         }
+
+        public interface IDocumentsRepository<T> where T : class
+        {
+            Task Create(T obj);
+        }
+        public interface IDocumentsGetRepository<T> where T : class
+        {
+            Task<IEnumerable<T>> GetAll(); Task<T> GetById(int id);
+        }
     }
 }

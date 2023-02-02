@@ -79,5 +79,24 @@ namespace Infinite.Users.Repositories
             return null;
 
         }
+        public async Task<IEnumerable<ApplicationForm>> SearchByphn(string phonenumber)
+        {
+            if(!string.IsNullOrWhiteSpace(phonenumber))
+            {
+                var employeeRoster = await _context.forms.Where(x => x.PhoneNumber.Contains(phonenumber)).ToListAsync();
+                return employeeRoster;
+            }
+            return null;
+        }
+
+        public async Task<IEnumerable<ApplicationForm>> SearchByemail(string email)
+        {
+            if (!string.IsNullOrWhiteSpace(email))
+            {
+                var employeeRoster = await _context.forms.Where(x => x.EmailId.Contains(email)).ToListAsync();
+                return employeeRoster;
+            }
+            return null;
+        }
     }
 }
